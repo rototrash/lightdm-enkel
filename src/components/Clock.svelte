@@ -3,7 +3,7 @@
 
   let time = new Date()
   let interval = undefined
-  $: hours = time.getHours()
+  $: hours = time.getHours() % 12 == 0 ? 12 : time.getHours() % 12
   $: minutes = (time.getMinutes() < 10)
     ? `0${time.getMinutes()}`
     : time.getMinutes()

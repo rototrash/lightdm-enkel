@@ -7,19 +7,51 @@
   export let isIdle
   export let toggleIdle
   export let logIn
+
   let error
-  let selectedSession
+  let selectedSession = undefined
+  let username = ""
+  let password = ""
+  let users = {} // username to user map 
+  let sessions = {} // session key to sessions map
 
   const lightdm = window.lightdm || {}
 
   onMount(() => {
     toggleIdle()
-    if (lightdm.default_session !== 'default') {
-      lightdm.sessions.find(s => s.name === lightdm.default_session)
-    } else {
+    for(const session of lightdm.sessions) {
+      sessions[session.key] = session
+    }
+    for(const user of lightdm.users) {
+      if(user.logged_in) {
+        selectedSession = sessions[user.session]
+        username = user.username
+      }
+      users[user.username] = user
+    }
+    if (lightdm.default_session !== 'default' && !selectedSession) {
+      selectedSession = sessions[lightdm.default_session]
+    } else if(!selectedSession) {
       selectedSession = lightdm.sessions[0]
     }
   })
+
+  function focusPassword(element) {
+    if(username) {
+      element.focus()
+      element.select()
+    }
+  }
+
+  function useUserSession() {
+    const user = users[username]
+    if(user) {
+      const userSession = sessions[users[username].session]
+      if(userSession) {
+        selectedSession = userSession
+      }
+    }
+  }
 
   function focusContainer() {
     document.querySelector('.container')
@@ -33,29 +65,26 @@
 
   function handleLogin() {
     document.querySelector('#login-btn').blur()
-    const { value: user } = document.querySelector('#user-name')
-    const { value: secret } = document.querySelector('#user-secret')
-    
-    if (!user || !secret) {
-      if (!user && !secret) error = 'missing username and password'
-      else if (!user) error = 'missing username'
+
+    if (!username || !password) {
+      if (!username && !password) error = 'missing username and password'
+      else if (!username) error = 'missing username'
       else error = 'missing password'
       return
     }
-    lightdm.authenticate(user)
+    lightdm.authenticate(username)
     toggleIdle()
   }
 
   window.show_prompt = (text, type) => {
-    const { value: secret } = document.querySelector('#user-secret')
     if (type === 'password') {
-      lightdm.respond(secret)
+      lightdm.respond(password)
     }
   }
 
   window.authentication_complete = () => {
       if (lightdm.is_authenticated) {
-        lightdm.login(lightdm.authentication_user, selectedSession.name.toLowerCase())
+        lightdm.login(lightdm.authentication_user, selectedSession.key)
         logIn()
       }
       else {
@@ -211,6 +240,8 @@
           type=text
           placeholder='username'
           on:focus={clearError}
+          bind:value={username}
+          on:change={useUserSession}
         />
         <span />
       </div>
@@ -220,6 +251,9 @@
           type=password
           placeholder='password'
           on:focus={clearError}
+          bind:value={password}
+          autocomplete="off"
+          use:focusPassword
         />
         <span />
       </div>
@@ -237,7 +271,11 @@
             bind:value={selectedSession}
           >
             {#each lightdm.sessions as session}
-              <option value={session}>{session.name}</option>
+              <option 
+                value={session} 
+                selected={selectedSession.key === session.key}>
+                {session.name}
+              </option>
             {/each}
           </select>
         </div>

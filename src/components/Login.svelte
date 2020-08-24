@@ -63,9 +63,6 @@
   :global(.imageReady) {
     opacity: 1 !important;
   }
-  :global(.error-show) {
-    height: 35px;
-  }
   :global(.logged-in) {
     background: black !important;
     opacity: 0;
