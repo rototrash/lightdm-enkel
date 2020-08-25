@@ -1,12 +1,21 @@
+This is a fork of the very pretty enkel theme by vndre.
+In this fork I have added a better user experience:
+1. A user now may only have to type their username after a boot.
+2. When a username is typed that users last session is automatically chosen.
+3. The clock uses 12 hour time instead of 24 hour.
+4. There is now a demo of the theme!
+
 ```
 
-                                                                    e n k e l
+                                                e n k e l
 
 
 A theme for lightdm-webkit2-greeter
 ```
 
 ![preview](preview.png)
+
+## [DEMO](https://mihranmashhud.github.io/enkel-greeter/)
 
 ## Installation
 
