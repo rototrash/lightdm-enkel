@@ -31,7 +31,8 @@
     }
     if (lightdm.default_session !== 'default' && !selectedSession) {
       selectedSession = sessions[lightdm.default_session]
-    } else if(!selectedSession) {
+    }
+    else if(!selectedSession) {
       selectedSession = lightdm.sessions[0]
     }
   })
