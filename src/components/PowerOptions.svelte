@@ -6,11 +6,12 @@
   export let isIdle
 
   let userOptions = {
+    suspend: lightdm.can_suspend,
     hibernate: lightdm.can_hibernate,
     restart: lightdm.can_restart,
-    shutdown: lightdm.can_shutdown,
-    suspend: lightdm.can_suspend
+    shutdown: lightdm.can_shutdown
   }
+  
 
   function executeAction(option) {
     lightdm[option]()
@@ -19,13 +20,15 @@
 
 <style>
   div {
+    background-color: var(--c3);
     display: flex;
-    color: var(--c3);
-    font-family: monospace;
+    color: var(--c5);
+    font-family: 'CartographCF', Arial, Helvetica, sans-serif;
+    box-shadow: 0px -10px 40px -15px #2e2e2e99;
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: 20px 20px 0 0;
+    bottom: 0;
+    padding: 15px;
+    border-radius: 10px 10px 0px 0px;
     user-select: none;
     z-index: 100;
   }
@@ -55,7 +58,7 @@
         >
           {Object.keys(userOptions)[index]}
         </span>
-        <span class='divider'>—</span>
+        <span class='divider'>∙</span>
       {/if}
     {/each}
     <Clock />

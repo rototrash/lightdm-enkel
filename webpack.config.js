@@ -31,7 +31,7 @@ const commonConfig = {
         }
       },
       {
-        test: /\.(woff(2)?|jpg)?$/,
+        test: /\.(woff(2)?|jpg|eot|ttf|otf)?$/,
         use: {
           loader: 'file-loader',
           options: {

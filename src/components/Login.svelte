@@ -29,14 +29,15 @@
 
 <style>
   :global(:root) {
-    --c1: #af66fe;
-    --c2: #63e2ff;
-    --c3: #04030f;
-    --c4: #515065;
-    --shadow: 0 14px 28px rgba(4, 3, 15, 0.25),
-      0 10px 10px rgba(4, 3, 15, 0.22);
-    --shadow-h: 0 19px 38px rgba(4, 3, 15, 0.30),
-      0 15px 12px rgba(4, 3, 15, 0.22);
+    --c1: #2e2e2e;
+    --c2: #2e2e2e;
+    --c3: #151515;
+    --c4: #888888;
+    --c5: #e8e8d3;
+    --shadow: 0 14px 28px #2e2e2e50,
+      0 10px 10px #2e2e2e50;
+    --shadow-h: 0 19px 38px #2e2e2e40,
+      0 15px 12px #2e2e2e40;
   }
   :global(*) {
     box-sizing: border-box;
@@ -44,7 +45,7 @@
   :global(html, body) {
     margin: 0;
     padding: 0;
-    font-family: 'Agane Regular', Arial, Helvetica, sans-serif;
+    font-family: 'CartographCF', Arial, Helvetica, sans-serif;
     font-size: 14px;
     overflow: hidden;
     transition: opacity 300ms ease-out;

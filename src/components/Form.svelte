@@ -68,9 +68,9 @@
     document.querySelector('#login-btn').blur()
 
     if (!username || !password) {
-      if (!username && !password) error = 'missing username and password'
-      else if (!username) error = 'missing username'
-      else error = 'missing password'
+      if (!username && !password) error = 'Missing Username and Password'
+      else if (!username) error = 'Missing Username'
+      else error = 'Missing Password'
       return
     }
     lightdm.authenticate(username)
@@ -90,7 +90,7 @@
       }
       else {
         toggleIdle()
-        error = 'Invalid username/password'
+        error = 'Invalid Username/Password'
       }
   }
 
@@ -118,7 +118,7 @@
     z-index: 100;
   }
   h1 {
-    color: white;
+    color: var(--c5);
     letter-spacing: 2px;
     margin: 0 0 20px 0;
   }
@@ -127,7 +127,7 @@
     border: none;
     outline: none;
     font-size: 1em;
-    color: white;
+    color: var(--c5);
     padding: 8px;
     width: 100%;
     z-index: 100;
@@ -159,8 +159,9 @@
   }
   .error-group {
     text-align: center;
-    color: #74F8F8;
-    font-style: italic;
+    color: #cf6a4c;
+    font-family: 'CartographCF', Arial, Helvetica, sans-serif;
+    font-style: normal;
     position: relative;
     overflow: hidden;
     transition: all 300ms ease-in-out;
@@ -178,17 +179,17 @@
     border: none;
     width: 40px;
     height: 40px;
-    box-shadow: 0 10px 20px rgba(175, 102, 254, 0.19),
-      0 6px 6px rgba(175, 102, 254, 0.23);
+    box-shadow: 0 10px 20px #2e2e2e30,
+      0 6px 6px #2e2e2e3b;
     cursor: pointer;
     padding: 10px;
     margin-left: auto;
-    color: white;
+    color: var(--c5);
     transition: all 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
   }
   button:hover, button:focus {
-    box-shadow: 0 3px 6px rgba(175, 102, 254, 0.16),
-      0 3px 6px rgba(175, 102, 254, 0.23);
+    box-shadow: 0 3px 6px #2e2e2e29,
+      0 3px 6px #2e2e2e3b;
   }
   .bottom {
     display: flex;

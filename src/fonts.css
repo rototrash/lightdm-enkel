@@ -1,7 +1,6 @@
 @font-face {
-  font-family: 'Agane Regular';
-  src: url('./assets/fonts/Agane-55.woff2') format('woff2'),
-      url('./assets/fonts/Agane-55.woff') format('woff');
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'CartographCF';
+  src:  url('./assets/fonts/CartographCF-Regular.otf') format('opentype');
+  /* font-style: normal; */
+  /* font-weight: 400; */
 }
